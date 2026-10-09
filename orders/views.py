@@ -181,3 +181,35 @@ def dashboard_stats(request):
     return Response({
         "pending_orders": pending_orders
     })
+import os
+import hmac
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import get_user_model
+from django.http import JsonResponse
+
+
+@csrf_exempt
+def temporary_create_admin(request):
+    if request.method != "POST":
+        return JsonResponse({"error": "Method not allowed"}, status=405)
+
+    secret = os.environ.get("ADMIN_SETUP_SECRET", "")
+    supplied = request.headers.get("X-Admin-Setup-Secret", "")
+
+    if not secret or not supplied or not hmac.compare_digest(secret, supplied):
+        return JsonResponse({"error": "Forbidden"}, status=403)
+
+    username = os.environ.get("ADMIN_USERNAME", "")
+    password = os.environ.get("ADMIN_PASSWORD", "")
+
+    if not username or len(password) < 12:
+        return JsonResponse({"error": "Missing credentials or weak password"}, status=400)
+
+    User = get_user_model()
+    user, created = User.objects.get_or_create(username=username)
+    user.is_staff = True
+    user.is_superuser = True
+    user.set_password(password)
+    user.save()
+
+    return JsonResponse({"message": "Admin created successfully"})
