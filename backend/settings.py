@@ -34,7 +34,11 @@ SECRET_KEY = 'django-insecure-t^+6ckc41giyq05!ewg%ngzbl@7yug!07#dv-hk3bv)9^&g+(1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "pizzawale-backend.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
 
 
 # Application definition
