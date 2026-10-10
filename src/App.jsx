@@ -168,7 +168,7 @@ const signupUser = async () => {
 
 
 useEffect(() => {
-  fetch("http://127.0.0.1:8000/api/pizzas/")
+  fetch("https://pizzawale-backend.onrender.com/api/pizzas/")
     .then((response) => response.json())
     .then((data) => {
       setPizzas(data);
