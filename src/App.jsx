@@ -250,7 +250,7 @@ if (!accessToken) {
   
 
   try {
-    const response = await fetch("https://pizzawale-backend.onrender.com/api/login/", {
+    const response = await fetch("https://pizzawale-backend.onrender.com/api/orders/", {
       method: "POST",
       headers: {
   "Content-Type": "application/json",
