@@ -39,17 +39,18 @@ class OrderSerializer(serializers.ModelSerializer):
         read_only_fields = ["id", "user", "status", "created_at"]
 
     
+    
     def create(self, validated_data):
         from decimal import Decimal
         from django.db import transaction
         from rest_framework import serializers
 
-        items_data = validated_data.pop("items")
+        items_data = validated_data.pop("items", [])
 
         if not items_data:
-            raise serializers.ValidationError(
-                {"items": "Your order must contain at least one item."}
-            )
+            raise serializers.ValidationError({
+                "items": "Your order must contain at least one item."
+            })
 
         total = Decimal("0.00")
         prepared_items = []
@@ -59,20 +60,25 @@ class OrderSerializer(serializers.ModelSerializer):
             quantity = item_data["quantity"]
 
             if quantity < 1:
-                raise serializers.ValidationError(
-                    {"quantity": "Quantity must be at least 1."}
-                )
+                raise serializers.ValidationError({
+                    "quantity": "Quantity must be at least 1."
+                })
 
             price = pizza.price
             total += price * quantity
+
             prepared_items.append({
                 "pizza": pizza,
                 "quantity": quantity,
                 "price": price,
             })
 
-        # Add the existing ₹30 delivery charge
+        # Add ₹30 delivery charge
         total += Decimal("30.00")
+
+        # Use server-calculated values
+        validated_data.pop("total_amount", None)
+        validated_data.pop("payment_method", None)
 
         with transaction.atomic():
             order = Order.objects.create(
