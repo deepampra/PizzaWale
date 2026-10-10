@@ -23,7 +23,7 @@ function App() {
   
 
   try {
-    const response = await fetch("http://127.0.0.1:8000/api/orders/", {
+    const response = await fetch("https://pizzawale-backend.onrender.com/api/orders/", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -94,7 +94,7 @@ const signupUser = async () => {
 
   try {
     const response = await fetch(
-      "http://127.0.0.1:8000/api/signup/",
+      "https://pizzawale-backend.onrender.com/api/signup/",
       {
         method: "POST",
         headers: {
@@ -129,7 +129,7 @@ const signupUser = async () => {
 
   try {
     const response = await fetch(
-      "http://127.0.0.1:8000/api/login/",
+      "https://pizzawale-backend.onrender.com/api/login/",
       {
         method: "POST",
         headers: {
@@ -283,7 +283,7 @@ const checkOrderStatus = async (orderId) => {
 
   try {
     const response = await fetch(
-      `http://127.0.0.1:8000/api/orders/${orderId}/`,
+      `https://pizzawale-backend.onrender.com/api/orders/${orderId}/`,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
