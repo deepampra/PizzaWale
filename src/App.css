@@ -4253,3 +4253,38 @@ button:hover {
     border-radius: 12px;
   }
 }
+
+/* Fix cart summary visibility */
+.cart-footer,
+.cart-summary {
+  background: #ffffff;
+  color: #333333;
+}
+
+.cart-footer p,
+.cart-summary p,
+.cart-footer span,
+.cart-summary span {
+  color: #666666;
+}
+
+.cart-footer .total,
+.cart-summary .total {
+  color: #ff4b2b;
+}
+
+/* Ensure prices remain visible */
+.cart-footer strong,
+.cart-summary strong {
+  color: #222222;
+}
+
+/* Mobile cart layout */
+@media (max-width: 768px) {
+  .cart-footer,
+  .cart-summary {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 24px;
+  }
+}

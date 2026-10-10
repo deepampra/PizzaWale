@@ -213,3 +213,5 @@ def temporary_create_admin(request):
     user.save()
 
     return JsonResponse({"message": "Admin created successfully"})
+
+
