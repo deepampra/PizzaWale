@@ -261,8 +261,9 @@ if (!accessToken) {
   customer_name: customerName,
   mobile: mobile,
   address: address,
-  latitude: latitude,
-  longitude: longitude,
+ landmark: landmark,
+ latitude: latitude,
+ longitude: longitude,
   total_amount: cartTotal + 30,
   payment_method: "COD",
     items: cart.map((item) => ({

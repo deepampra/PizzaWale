@@ -28,6 +28,7 @@ class OrderSerializer(serializers.ModelSerializer):
             "customer_name",
             "mobile",
             "address",
+            "landmark",
             "latitude",
             "longitude",
             "total_amount",

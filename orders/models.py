@@ -41,6 +41,7 @@ class Order(models.Model):
     customer_name = models.CharField(max_length=100)
     mobile = models.CharField(max_length=15)
     address = models.TextField()
+    landmark = models.CharField(max_length=255, blank=True, default="")
     latitude = models.FloatField(null=True, blank=True)
     longitude = models.FloatField(null=True, blank=True)
     payment_method = models.CharField(
