@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import LocationPicker from "./LocationPicker";
 import "./App.css";
 
 
@@ -178,6 +179,34 @@ useEffect(() => {
     });
 }, []);
 
+
+const updateAddressFromCoordinates = async (lat, lon) => {
+  setLatitude(lat);
+  setLongitude(lon);
+
+  try {
+    const response = await fetch(
+      `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`
+    );
+
+    if (!response.ok) {
+      throw new Error("Address lookup failed");
+    }
+
+    const data = await response.json();
+
+    if (data.display_name) {
+      setAddress(data.display_name);
+    } else {
+      setAddress(`Latitude: ${lat}, Longitude: ${lon}`);
+    }
+  } catch (error) {
+    console.error("Address lookup error:", error);
+
+    setAddress(`Latitude: ${lat}, Longitude: ${lon}`);
+  }
+};
+
 const getLocation = () => {
   if (!navigator.geolocation) {
     alert("Location is not supported by your browser.");
@@ -186,35 +215,25 @@ const getLocation = () => {
 
   navigator.geolocation.getCurrentPosition(
     async (position) => {
-  const latitude = position.coords.latitude;
-  const longitude = position.coords.longitude;
+      await updateAddressFromCoordinates(
+        position.coords.latitude,
+        position.coords.longitude
+      );
 
-  try {
-    const response = await fetch(
-      `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
-    );
-
-    const data = await response.json();
-
-    if (data.display_name) {
-      setAddress(data.display_name);
       alert("Location detected successfully!");
-    } else {
-      setAddress(`Latitude: ${latitude}, Longitude: ${longitude}`);
-      alert("Location detected, but address could not be found.");
-    }
-  } catch (error) {
-    console.error(error);
-    setAddress(`Latitude: ${latitude}, Longitude: ${longitude}`);
-    alert("Unable to convert location into address.");
-  }
-},
-    
-    () => {
-      alert("Unable to get your location. Please allow location access.");
+    },
+    (error) => {
+      console.error("GPS error:", error);
+      alert("Allow location access and try again.");
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 15000,
+      maximumAge: 0,
     }
   );
 };
+
 const placeOrder = async () => {
   const accessToken = localStorage.getItem("accessToken");
 
@@ -227,6 +246,10 @@ if (!accessToken) {
     alert("Please fill all delivery details.");
     return;
   }
+  if (!/^[6-9]\d{9}$/.test(mobile)) {
+  alert("Please enter a valid 10-digit mobile number.");
+  return;
+}
 
   if (cart.length === 0) {
     alert("Your cart is empty.");
@@ -1105,12 +1128,23 @@ const handleSearch = () => {
   onChange={(e) => setCustomerName(e.target.value)}
 />
 
-       <input
+       
+<input
   type="tel"
-  placeholder="Mobile Number"
+  inputMode="numeric"
+  placeholder="Enter 10-digit mobile number"
+  maxLength={10}
   value={mobile}
-  onChange={(e) => setMobile(e.target.value)}
+  onChange={(e) => {
+    const digits = e.target.value
+      .replace(/\D/g, "")
+      .slice(0, 10);
+
+    setMobile(digits);
+  }}
+  required
 />
+
 
         <textarea
   placeholder="Enter your complete delivery address"
@@ -1125,6 +1159,11 @@ const handleSearch = () => {
 >
   📍 Use My Location
 </button>
+<LocationPicker
+  latitude={latitude}
+  longitude={longitude}
+  onLocationSelect={updateAddressFromCoordinates}
+/>
 
         <h3>Order Summary</h3>
 
