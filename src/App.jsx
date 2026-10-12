@@ -1155,7 +1155,6 @@ const handleSearch = () => {
   onChange={(e) => setAddress(e.target.value)}
 />
 
-
 <input
   type="text"
   placeholder="Nearby famous location (e.g. school, temple, petrol pump)"
@@ -1163,6 +1162,9 @@ const handleSearch = () => {
   onChange={(e) => setLandmark(e.target.value)}
   required
 />
+
+
+
 
 
 
