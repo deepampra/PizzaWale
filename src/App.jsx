@@ -58,6 +58,7 @@ const [pizzas, setPizzas] = useState([]);
 const [customerName, setCustomerName] = useState("");
 const [mobile, setMobile] = useState("");
 const [address, setAddress] = useState("");
+const [landmark, setLandmark] = useState("");
 const [orderStatus, setOrderStatus] = useState("");
 const [orderId, setOrderId] = useState(null);
 const [latitude, setLatitude] = useState(null);
@@ -242,10 +243,10 @@ if (!accessToken) {
   setShowLogin(true);
   return;
 }
-  if (!customerName || !mobile || !address) {
-    alert("Please fill all delivery details.");
-    return;
-  }
+  if (!customerName || !mobile || !address || !landmark.trim()) {
+  alert("Please fill all delivery details, including a nearby famous location.");
+  return;
+}
   if (!/^[6-9]\d{9}$/.test(mobile)) {
   alert("Please enter a valid 10-digit mobile number.");
   return;
@@ -1152,6 +1153,17 @@ const handleSearch = () => {
   value={address}
   onChange={(e) => setAddress(e.target.value)}
 />
+
+
+<input
+  type="text"
+  placeholder="Nearby famous location (e.g. school, temple, petrol pump)"
+  value={landmark}
+  onChange={(e) => setLandmark(e.target.value)}
+  required
+/>
+
+
 
         <button
   className="location-button"
