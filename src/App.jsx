@@ -1178,6 +1178,10 @@ const handleSearch = () => {
             </strong>
           </div>
         ))}
+        <div className="checkout-item">
+  <span>Delivery Charge</span>
+  <strong>₹30</strong>
+</div>
 
         <div className="checkout-total">
           <span>Total</span>
