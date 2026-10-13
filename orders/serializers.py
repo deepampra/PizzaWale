@@ -23,20 +23,11 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = [
-            "id",
-            "user",
-            "customer_name",
-            "mobile",
-            "address",
-            "landmark",
-            "latitude",
-            "longitude",
-            "total_amount",
-            "payment_method",
-            "status",
-            "created_at",
-            "items",
-        ]
+    "id", "user", "customer_name", "mobile", "address",
+    "landmark",
+    "latitude", "longitude", "total_amount", "payment_method",
+    "status", "created_at", "items",
+]
         read_only_fields = ["id", "user", "status", "created_at"]
 
     
