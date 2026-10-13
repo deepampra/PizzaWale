@@ -300,6 +300,10 @@
                             {{ order.address }}
                         </div>
                         <div class="info-item">
+                            <strong>📍 Landmark:</strong>
+                            {{ order.landmark|default:"Not provided" }}
+</div>
+                        <div class="info-item">
     <strong>💵 Payment Method:</strong>
     {{ order.payment_method }}
 </div>
