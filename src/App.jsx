@@ -472,16 +472,20 @@ const handleSearch = () => {
     My Orders
   </button>
 )}
-<button
-  className="signup-button"
-  onClick={() => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    setIsLoggedIn(false);
-  }}
->
-  Logout
-</button>
+
+{isLoggedIn && (
+  <button
+    className="signup-button"
+    onClick={() => {
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      setIsLoggedIn(false);
+    }}
+  >
+    Logout
+  </button>
+)}
+
 <button
   className="cart-button"
   onClick={() => setCartOpen(true)}
