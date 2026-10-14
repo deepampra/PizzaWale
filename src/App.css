@@ -5170,3 +5170,386 @@ body {
         font-size: 20px;
     }
 }
+
+/* ===== PIZZAWALE FINAL UI FIX ===== */
+
+:root {
+  --pizza-orange: #ff6a00;
+  --pizza-red: #ff321c;
+  --pizza-black: #0b0b0b;
+  --pizza-card: #171717;
+  --pizza-border: #292929;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  width: 100%;
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  min-width: 320px;
+  background: #0b0b0b !important;
+  color: #fff !important;
+  font-family: "DM Sans", sans-serif;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+/* Consistent section widths and backgrounds */
+.hero,
+.location-section,
+.category-section,
+.pizza-section,
+.why-section {
+  background-color: #0b0b0b;
+  color: #fff;
+}
+
+.hero {
+  background-image:
+    radial-gradient(
+      circle at 85% 30%,
+      rgba(255, 90, 0, 0.16),
+      transparent 35%
+    ),
+    linear-gradient(135deg, #080808, #111, #0b0b0b);
+}
+
+.location-section,
+.category-section,
+.pizza-section,
+.why-section {
+  width: 100%;
+}
+
+.section,
+.location-card,
+.why-section {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.category-section,
+.pizza-section {
+  color: #fff;
+}
+
+.pizza-section h1,
+.pizza-section h2,
+.pizza-section h3,
+.why-section h2,
+.why-section h3 {
+  color: #fff;
+}
+
+/* Navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(10, 10, 10, 0.97) !important;
+  border-bottom: 1px solid #292929;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-inner {
+  width: 100%;
+  max-width: 1300px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.nav-links a:hover {
+  color: var(--pizza-orange);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-actions button,
+.cart-button {
+  border: 1px solid #333;
+  border-radius: 9px;
+  padding: 10px 14px;
+  background: #171717;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+}
+
+.nav-actions button:hover,
+.cart-button:hover {
+  border-color: var(--pizza-orange);
+}
+
+/* Pizza cards */
+.pizza-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.pizza-card {
+  min-width: 0;
+  overflow: hidden;
+  background: linear-gradient(145deg, #1a1a1a, #111) !important;
+  border: 1px solid #292929;
+  border-radius: 18px;
+  color: #fff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s, border-color 0.25s;
+}
+
+.pizza-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--pizza-orange);
+}
+
+.pizza-photo {
+  width: 100%;
+  overflow: hidden;
+}
+
+.pizza-photo img {
+  display: block;
+  width: 100%;
+  height: 205px;
+  object-fit: cover;
+}
+
+.pizza-details {
+  padding: 16px;
+}
+
+.pizza-title h3 {
+  color: #fff;
+}
+
+.pizza-details p {
+  color: #aaa;
+  line-height: 1.6;
+}
+
+.price strong,
+.pizza-footer .price {
+  color: var(--pizza-orange);
+}
+
+/* Buttons */
+button,
+.add-button,
+.checkout-button,
+.place-order-button,
+.location-button {
+  cursor: pointer;
+}
+
+.add-button,
+.checkout-button,
+.place-order-button {
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ff6a00, #ff321c);
+  color: #fff;
+  font-weight: 700;
+  padding: 12px 18px;
+  transition: transform 0.2s, filter 0.2s;
+}
+
+.add-button:hover,
+.checkout-button:hover,
+.place-order-button:hover {
+  filter: brightness(1.12);
+  transform: translateY(-2px);
+}
+
+/* Offer section */
+.offer-section {
+  overflow: hidden;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 85% 20%, #65230b, transparent 45%),
+    linear-gradient(135deg, #1a0905, #351205, #0b0b0b);
+  color: #fff;
+}
+
+.offer-section h2,
+.offer-section p {
+  color: #fff;
+}
+
+/* Why us cards */
+.why-card {
+  background: linear-gradient(145deg, #191919, #101010) !important;
+  border: 1px solid #292929;
+  border-radius: 16px;
+  color: #fff;
+}
+
+.why-card h3 {
+  color: #fff;
+}
+
+.why-card p {
+  color: #aaa;
+}
+
+/* Footer */
+footer {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255, 90, 0, 0.12), transparent 30%),
+    #0b0b0b;
+  color: #fff;
+}
+
+footer a {
+  color: #aaa;
+}
+
+footer a:hover {
+  color: var(--pizza-orange);
+}
+
+/* Images must stay inside their cards */
+img {
+  max-width: 100%;
+}
+
+/* Responsive layout */
+@media (max-width: 1000px) {
+  .pizza-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .navbar-inner {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-inner {
+    min-height: 68px;
+    height: auto;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  .nav-links {
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .nav-actions {
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .nav-actions button,
+  .cart-button {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .hero {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .hero-image-area {
+    height: auto;
+    min-height: 300px;
+  }
+
+  .hero-image-area > img {
+    width: min(78vw, 340px);
+    height: min(78vw, 340px);
+  }
+
+  .hero-circle {
+    width: min(75vw, 320px);
+    height: min(75vw, 320px);
+  }
+
+  .location-card {
+    margin-left: 14px;
+    margin-right: 14px;
+    flex-wrap: wrap;
+  }
+
+  .section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .pizza-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .pizza-photo img {
+    height: 170px;
+  }
+
+  .pizza-details {
+    padding: 12px;
+  }
+
+  .pizza-title h3 {
+    font-size: 14px;
+  }
+
+  .offer-section {
+    margin-left: 14px;
+    margin-right: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pizza-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pizza-photo img {
+    height: 230px;
+  }
+
+  .hero-stats {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .nav-links {
+    gap: 12px;
+  }
+}
